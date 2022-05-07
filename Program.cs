@@ -1,7 +1,7 @@
 ﻿class TestClass
 {
-    static void Main(string[] args)
+    static int Main()
     {
-        Console.WriteLine(args.Length);
+        return 0;
     }
 }
