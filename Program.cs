@@ -7,10 +7,10 @@ public struct Coords
 {
     public int x, y;
 
-    public Coords(int p1, int p2)
+    public Coords(int x, int y)
     {
-        x = p1;
-        y = p2;
+        this.x = x;
+        this.y = y;
     }
 
     public override string ToString()
