@@ -1,7 +1,9 @@
-﻿Coords coordinates = new(1, 2);
+﻿using System;
+
+Coords coordinates = new(1, 2);
 coordinates.x = 23;
 
-System.Console.WriteLine(coordinates);
+Console.WriteLine(coordinates);
 
 public struct Coords
 {
