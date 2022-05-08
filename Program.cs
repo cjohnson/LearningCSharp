@@ -1,4 +1,20 @@
-﻿string? s = Console.ReadLine();
+﻿Coords coordinates = new(1, 2);
+coordinates.x = 23;
 
-int returnValue = int.Parse(s ?? "-1");
-return returnValue;
+System.Console.WriteLine(coordinates);
+
+public struct Coords
+{
+    public int x, y;
+
+    public Coords(int p1, int p2)
+    {
+        x = p1;
+        y = p2;
+    }
+
+    public override string ToString()
+    {
+        return $"[{x}, {y}]";
+    }
+}
