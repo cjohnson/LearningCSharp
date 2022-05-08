@@ -1,71 +1,65 @@
-﻿using System;
-using System.Globalization;
-
-class TestClass
+﻿class TestClass
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("NumberStyles.AllowDecimalPoint");
-        Convert("63.00", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("63.00", NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")); 
-        Console.WriteLine();
-        
-        Console.WriteLine("NumberStyles.AllowExponent");
-        Convert("63e2", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("63e2", NumberStyles.AllowExponent, new CultureInfo("en-US")); 
-        Console.WriteLine();
+        double dNumber = 23.15;
 
-        Console.WriteLine("NumberStyles.AllowLeadingWhite");
-        Convert("  23", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("  23", NumberStyles.AllowLeadingWhite, new CultureInfo("en-US")); 
-        Console.WriteLine();
-      
-        Console.WriteLine("NumberStyles.AllowTrailingWhite");
-        Convert("23  ", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("23  ", NumberStyles.AllowTrailingWhite, new CultureInfo("en-US")); 
-        Console.WriteLine();
-       
-        Console.WriteLine("NumberStyles.AllowLeadingSign");
-        Convert("+23", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("+23", NumberStyles.AllowLeadingSign, new CultureInfo("en-US")); 
-        Console.WriteLine();
-        
-        Console.WriteLine("NumberStyles.AllowTrailingSign");
-        Convert("23+", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("23+", NumberStyles.AllowTrailingSign, new CultureInfo("en-US")); 
-        Console.WriteLine();
+        // Double to Integer(32) conversion
+        try 
+        {
+            int iNumber = System.Convert.ToInt32(dNumber);
+            System.Console.WriteLine(iNumber);
+        }
+        catch (System.OverflowException) 
+        {
+            System.Console.WriteLine("Overflow in double to int conversion.");
+        }
 
-        Console.WriteLine("NumberStyles.AllowParentheses");
-        Convert("(23)", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("(23)", NumberStyles.AllowParentheses, new CultureInfo("en-US")); 
-        Console.WriteLine();
+        // Double to Boolean conversion
+        bool bNumber = System.Convert.ToBoolean(dNumber);
+        System.Console.WriteLine(bNumber);
 
-        Console.WriteLine("NumberStyles.AllowThousands");
-        Convert("12,000", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("12,000", NumberStyles.AllowThousands, new CultureInfo("en-US")); 
-        Console.WriteLine();
-        
-        Console.WriteLine("NumberStyles.AllowCurrencySymbol");
-        Convert("$23", NumberStyles.None, new CultureInfo("en-US")); 
-        Convert("$23", NumberStyles.AllowCurrencySymbol, new CultureInfo("en-US")); 
-        Console.WriteLine();
-    }
+        // Double to String Conversion
+        string strNumber = System.Convert.ToString(dNumber);
+        System.Console.WriteLine("\"{0}\"", strNumber);
 
-    private static void Convert(string value, NumberStyles style,
-                                IFormatProvider provider)
-    {
+        // String to Character Conversion
+        try 
+        {
+            char chrNumber = System.Convert.ToChar(strNumber[0]);
+            System.Console.WriteLine(chrNumber);
+        }
+        catch (System.ArgumentNullException)
+        {
+            System.Console.WriteLine("String is null");
+        }
+        catch (System.FormatException)
+        {
+            System.Console.WriteLine("String length is greater than 1.");
+        }
+
+        int newInteger = 0;
         try
         {
-            long number = Int64.Parse(value, style, provider);
-            Console.WriteLine("Converted '{0}' to {1}", value, number);
+            System.Console.WriteLine("Enter an integer:");
+            newInteger = System.Convert.ToInt32(
+                System.Console.ReadLine()
+            );
         }
-        catch (FormatException)
+        catch(System.ArgumentNullException)
         {
-            Console.WriteLine("Unable to convert '{0}'.", value);
+            System.Console.WriteLine("String is null.");
         }
-        catch (OverflowException)
+        catch(System.FormatException)
         {
-            Console.WriteLine("'{0}' is out of range of the Int64 type.", value);
+            System.Console.WriteLine("String does not consist of an " +
+                "optional sign followed by a series of digits.");
         }
+        catch(System.OverflowException)
+        {
+            System.Console.WriteLine("Overflow in string to int conversion");
+        }
+
+        System.Console.WriteLine("Your integer as a double is {0}.", System.Convert.ToDouble(newInteger));
     }
 }
