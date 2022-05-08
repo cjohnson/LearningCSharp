@@ -31,7 +31,7 @@ class TestClass
         if (!test)
         {
             System.Console.WriteLine("Please enter a numeric argument.");
-            System.Console.WriteLine();
+            System.Console.WriteLine("Usage: Factorial <number>");
             return 1;
         }
 
