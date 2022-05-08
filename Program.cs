@@ -1,65 +1,47 @@
-﻿class TestClass
+﻿public class Functions
 {
-    static void Main(string[] args)
+    public static long Factorial(int n)
     {
-        double dNumber = 23.15;
-
-        // Double to Integer(32) conversion
-        try 
+        if ((n < 0) || (n > 20))
         {
-            int iNumber = System.Convert.ToInt32(dNumber);
-            System.Console.WriteLine(iNumber);
-        }
-        catch (System.OverflowException) 
-        {
-            System.Console.WriteLine("Overflow in double to int conversion.");
+            return -1;
         }
 
-        // Double to Boolean conversion
-        bool bNumber = System.Convert.ToBoolean(dNumber);
-        System.Console.WriteLine(bNumber);
-
-        // Double to String Conversion
-        string strNumber = System.Convert.ToString(dNumber);
-        System.Console.WriteLine("\"{0}\"", strNumber);
-
-        // String to Character Conversion
-        try 
+        long tempResult = 1;
+        for (int i = 1; i <= n; ++i)
         {
-            char chrNumber = System.Convert.ToChar(strNumber[0]);
-            System.Console.WriteLine(chrNumber);
+            tempResult *= i;
         }
-        catch (System.ArgumentNullException)
+        return tempResult;
+    }
+}
+class TestClass
+{
+    static int Main(string[] args)
+    {
+        if (args.Length == 0)
         {
-            System.Console.WriteLine("String is null");
-        }
-        catch (System.FormatException)
-        {
-            System.Console.WriteLine("String length is greater than 1.");
+            System.Console.WriteLine("Please enter a numeric argument.");
+            System.Console.WriteLine("Usage: Factorial <number>");
+            return 1;
         }
 
-        int newInteger = 0;
-        try
+        int num;
+        bool test = int.TryParse(args[0], out num);
+        if (!test)
         {
-            System.Console.WriteLine("Enter an integer:");
-            newInteger = System.Convert.ToInt32(
-                System.Console.ReadLine()
-            );
-        }
-        catch(System.ArgumentNullException)
-        {
-            System.Console.WriteLine("String is null.");
-        }
-        catch(System.FormatException)
-        {
-            System.Console.WriteLine("String does not consist of an " +
-                "optional sign followed by a series of digits.");
-        }
-        catch(System.OverflowException)
-        {
-            System.Console.WriteLine("Overflow in string to int conversion");
+            System.Console.WriteLine("Please enter a numeric argument.");
+            System.Console.WriteLine();
+            return 1;
         }
 
-        System.Console.WriteLine("Your integer as a double is {0}.", System.Convert.ToDouble(newInteger));
+        long result = Functions.Factorial(num);
+
+        if (result == -1)
+            System.Console.WriteLine("Input must be >= 0 and <= 20.");
+        else
+            System.Console.WriteLine($"The Factorial of {num} is {result}.");
+
+        return 0;
     }
 }
