@@ -1,7 +1,21 @@
-﻿using System.Text;
+﻿MyClass.TestMethod();
+MyNamespace.MyClass.MyMethod();
 
-StringBuilder builder = new();
-builder.AppendLine("Hello");
-builder.AppendLine("World!");
+public class MyClass
+{
+    public static void TestMethod()
+    {
+        System.Console.WriteLine("Hello World!");
+    }
+}
 
-System.Console.WriteLine(builder.ToString());
+namespace MyNamespace
+{
+    class MyClass
+    {
+        public static void MyMethod()
+        {
+            System.Console.WriteLine("Hello World from MyNamespace.MyClass.MyMethod!");
+        }
+    }
+}
