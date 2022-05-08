@@ -1,33 +1,54 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 class TestClass
 {
     static void Main(string[] args)
     {
-        // Convert 12,000 in United Kingdom English (12,000 en-US)
-        Convert("12,000", NumberStyles.Float | NumberStyles.AllowThousands, new CultureInfo("en-GB")); 
+        Console.WriteLine("NumberStyles.AllowDecimalPoint");
+        Convert("63.00", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("63.00", NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")); 
+        Console.WriteLine();
+        
+        Console.WriteLine("NumberStyles.AllowExponent");
+        Convert("63e2", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("63e2", NumberStyles.AllowExponent, new CultureInfo("en-US")); 
+        Console.WriteLine();
 
-        // Convert 12,000 in French (12 en-US)
-        Convert("12,000", NumberStyles.Float | NumberStyles.AllowThousands, new CultureInfo("fr-FR")); 
+        Console.WriteLine("NumberStyles.AllowLeadingWhite");
+        Convert("  23", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("  23", NumberStyles.AllowLeadingWhite, new CultureInfo("en-US")); 
+        Console.WriteLine();
+      
+        Console.WriteLine("NumberStyles.AllowTrailingWhite");
+        Convert("23  ", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("23  ", NumberStyles.AllowTrailingWhite, new CultureInfo("en-US")); 
+        Console.WriteLine();
+       
+        Console.WriteLine("NumberStyles.AllowLeadingSign");
+        Convert("+23", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("+23", NumberStyles.AllowLeadingSign, new CultureInfo("en-US")); 
+        Console.WriteLine();
         
-        // Convert 12,000 in United States English (en-US)
-        Convert("12,000", NumberStyles.Float, new CultureInfo("en-US")); 
-        
+        Console.WriteLine("NumberStyles.AllowTrailingSign");
+        Convert("23+", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("23+", NumberStyles.AllowTrailingSign, new CultureInfo("en-US")); 
+        Console.WriteLine();
 
-        // Convert 12 425,00 in Swedish () 
-        Convert("12 425,00", NumberStyles.Float | NumberStyles.AllowThousands, new CultureInfo("sv-SE")); 
+        Console.WriteLine("NumberStyles.AllowParentheses");
+        Convert("(23)", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("(23)", NumberStyles.AllowParentheses, new CultureInfo("en-US")); 
+        Console.WriteLine();
+
+        Console.WriteLine("NumberStyles.AllowThousands");
+        Convert("12,000", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("12,000", NumberStyles.AllowThousands, new CultureInfo("en-US")); 
+        Console.WriteLine();
         
-        // Convert 12,425.00
-        Convert("12,425.00", NumberStyles.Float | NumberStyles.AllowThousands, NumberFormatInfo.InvariantInfo); 
-        
-        // Convert 631,900 to an Integer in French (631.900 en-US)
-        Convert("631,900", NumberStyles.Integer | NumberStyles.AllowDecimalPoint, new CultureInfo("fr-FR")); 
-        
-        // Convert 631,900 to an Integer in United States English (en-US)
-        Convert("631,900", NumberStyles.Integer | NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")); 
-        
-        // Convert 631,900 to an Integer in United States English (en-US)
-        Convert("631,900", NumberStyles.Integer | NumberStyles.AllowThousands, new CultureInfo("en-US")); 
+        Console.WriteLine("NumberStyles.AllowCurrencySymbol");
+        Convert("$23", NumberStyles.None, new CultureInfo("en-US")); 
+        Convert("$23", NumberStyles.AllowCurrencySymbol, new CultureInfo("en-US")); 
+        Console.WriteLine();
     }
 
     private static void Convert(string value, NumberStyles style,
