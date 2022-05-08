@@ -1,19 +1,13 @@
-﻿using System;
+﻿SampleNamespace.SampleClass sample = new();
+sample.SampleMethod();
 
-Coords coordinates = new(1, 2);
-coordinates.x = 23;
-
-Console.WriteLine(coordinates);
-
-public struct Coords
+namespace SampleNamespace
 {
-    public int x, y;
-
-    public Coords(int x, int y)
+    class SampleClass
     {
-        this.x = x;
-        this.y = y;
+        public void SampleMethod()
+        {
+            Console.WriteLine("SampleMethod inside SampleNamespace");
+        }
     }
-
-    public override string ToString() => $"[{x}, {y}]";
 }
