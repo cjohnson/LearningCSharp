@@ -1,21 +1,11 @@
-﻿MyClass.TestMethod();
-MyNamespace.MyClass.MyMethod();
-
-public class MyClass
+﻿if(args.Length > 0)
 {
-    public static void TestMethod()
+    foreach (var arg in args)
     {
-        System.Console.WriteLine("Hello World!");
+        System.Console.WriteLine($"Argument={arg}");
     }
 }
-
-namespace MyNamespace
+else
 {
-    class MyClass
-    {
-        public static void MyMethod()
-        {
-            System.Console.WriteLine("Hello World from MyNamespace.MyClass.MyMethod!");
-        }
-    }
+    System.Console.WriteLine("No arguments");
 }
